@@ -1,0 +1,12 @@
+D:\dotnet_practice\Assignment2\run\bin\Debug\net6.0\run.deps.json
+D:\dotnet_practice\Assignment2\run\bin\Debug\net6.0\run.dll
+D:\dotnet_practice\Assignment2\run\bin\Debug\net6.0\run.pdb
+D:\dotnet_practice\Assignment2\run\obj\Debug\net6.0\run.csproj.AssemblyReference.cache
+D:\dotnet_practice\Assignment2\run\obj\Debug\net6.0\run.GeneratedMSBuildEditorConfig.editorconfig
+D:\dotnet_practice\Assignment2\run\obj\Debug\net6.0\run.AssemblyInfoInputs.cache
+D:\dotnet_practice\Assignment2\run\obj\Debug\net6.0\run.AssemblyInfo.cs
+D:\dotnet_practice\Assignment2\run\obj\Debug\net6.0\run.csproj.CoreCompileInputs.cache
+D:\dotnet_practice\Assignment2\run\obj\Debug\net6.0\run.dll
+D:\dotnet_practice\Assignment2\run\obj\Debug\net6.0\refint\run.dll
+D:\dotnet_practice\Assignment2\run\obj\Debug\net6.0\run.pdb
+D:\dotnet_practice\Assignment2\run\obj\Debug\net6.0\ref\run.dll
