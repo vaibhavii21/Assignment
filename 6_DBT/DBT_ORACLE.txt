@@ -1,0 +1,621 @@
+							Assignment –1
+					Creating sample tables and inserting values
+			--------------------------------------------------------------------
+
+SELECT * FROM SALESPEOPLE;
+
+SNUM SNAME      CITY             COMM
+---------- ---------- ---------- ----------
+      1001 Peel       London            .12
+      1002 Serres     San Jose          .13
+      1007 Ritkin     Barcelona         .15
+      1003 Axelrod    New York           .1
+      1004 Motika     London            .11
+
+-----------------------------------------------------------------------------------------------------
+SQL> SELECT * FROM customers;  
+
+      CNUM CNAME      CITY           RATING       SNUM
+---------- ---------- ---------- ---------- ----------
+      2001 Hoffman    London            100       1001
+      2002 Giovanni   Rome              200       1003
+      2003 Liu        San Jose          200       1002
+      2004 Grass      Berlin            300       1002
+      2006 Clemens    London            100       1001
+      2008 Cisneros   San Jose          300       1007
+      2007 Pereira    Rome              100       1004
+
+-----------------------------------------------------------------------------------------------------
+
+SQL> SELECT * FROM ORDERS;
+
+      ONUM        AMT ODATE           CNUM       SNUM
+---------- ---------- --------- ---------- ----------
+      3001      18.69 03-OCT-90       2008       1007
+      3003     767.19 03-OCT-90       2001       1001
+      3005    5060.45 03-OCT-90       2003       1002
+      3006    1098.16 03-OCT-90       2008       1007
+      3009    1713.23 04-OCT-90       2002       1003
+      3007      75.75 04-OCT-90       2004       1002
+      3008       4723 05-OCT-90       2006       1001
+      3010    1309.95 06-OCT-90       2004       1002
+      3011    9891.88 06-OCT-90       2006       1001
+      3002     1900.1 03-OCT-90       2007       1004
+
+
+-----------------------------------------------------------------------------------------------------
+								Assignment –4
+						Retrieving Information from Tables.
+				--------------------------------------------------------------------
+
+SELECT ONUM, AMT, ODATE FROM ORDERS;
+
+      ONUM        AMT ODATE
+---------- ---------- ---------
+      3001      18.69 03-OCT-90
+      3003     767.19 03-OCT-90
+      3005    5060.45 03-OCT-90
+      3006    1098.16 03-OCT-90
+      3009    1713.23 04-OCT-90
+      3007      75.75 04-OCT-90
+      3008       4723 05-OCT-90
+      3010    1309.95 06-OCT-90
+      3011    9891.88 06-OCT-90
+      3002     1900.1 03-OCT-90
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT * FROM CUSTOMERS
+  2  WHERE SNUM=1001;
+
+      CNUM CNAME      CITY           RATING       SNUM
+---------- ---------- ---------- ---------- ----------
+      2001 Hoffman    London            100       1001
+      2006 Clemens    London            100       1001
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT CITY, SNAME, SNUM, COMM FROM SALESPEOPLE;
+
+CITY       SNAME            SNUM       COMM
+---------- ---------- ---------- ----------
+London     Peel             1001        .12
+San Jose   Serres           1002        .13
+Barcelona  Ritkin           1007        .15
+New York   Axelrod          1003         .1
+London     Motika           1004        .11
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT CNAME, RATING FROM CUSTOMERS
+  2  WHERE CITY='San Jose';
+
+CNAME          RATING
+---------- ----------
+Liu               200
+Cisneros          300
+
+-------------------------------------------------------------------------------------------------------
+
+ SELECT * FROM ORDERS
+  2  WHERE AMT>1000;
+
+      ONUM        AMT ODATE           CNUM       SNUM
+---------- ---------- --------- ---------- ----------
+      3005    5060.45 03-OCT-90       2003       1002
+      3006    1098.16 03-OCT-90       2008       1007
+      3009    1713.23 04-OCT-90       2002       1003
+      3008       4723 05-OCT-90       2006       1001
+      3010    1309.95 06-OCT-90       2004       1002
+      3011    9891.88 06-OCT-90       2006       1001
+      3002     1900.1 03-OCT-90       2007       1004
+
+-------------------------------------------------------------------------------------------------------
+
+								Assignment –5
+						Relational and Logical Operators
+			--------------------------------------------------------------------------
+SQL> SELECT * FROM ORDERS
+  2  WHERE AMT>1000;
+
+      ONUM        AMT ODATE           CNUM       SNUM
+---------- ---------- --------- ---------- ----------
+      3005    5060.45 03-OCT-90       2003       1002
+      3006    1098.16 03-OCT-90       2008       1007
+      3009    1713.23 04-OCT-90       2002       1003
+      3008       4723 05-OCT-90       2006       1001
+      3010    1309.95 06-OCT-90       2004       1002
+      3011    9891.88 06-OCT-90       2006       1001
+      3002     1900.1 03-OCT-90       2007       1004
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT SNAME, CITY FROM SALESPEOPLE
+  2  WHERE CITY='London' AND COMM>.10;
+
+SNAME      CITY
+---------- ----------
+Peel       London
+Motika     London
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT * FROM CUSTOMERS
+  2  WHERE RATING>100;
+
+      CNUM CNAME      CITY           RATING       SNUM
+---------- ---------- ---------- ---------- ----------
+      2002 Giovanni   Rome              200       1003
+      2003 Liu        San Jose          200       1002
+      2004 Grass      Berlin            300       1002
+      2008 Cisneros   San Jose          300       1007
+
+-------------------------------------------------------------------------------------------------------
+
+SELECT * FROM ORDERS
+  2  WHERE (AMT < 1000 OR NOT (ODATE = '03-OCT-1990' AND CNUM> 2003));
+
+      ONUM        AMT ODATE           CNUM       SNUM
+---------- ---------- --------- ---------- ----------
+      3001      18.69 03-OCT-90       2008       1007
+      3003     767.19 03-OCT-90       2001       1001
+      3005    5060.45 03-OCT-90       2003       1002
+      3009    1713.23 04-OCT-90       2002       1003
+      3007      75.75 04-OCT-90       2004       1002
+      3008       4723 05-OCT-90       2006       1001
+      3010    1309.95 06-OCT-90       2004       1002
+      3011    9891.88 06-OCT-90       2006       1001
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT * FROM ORDERS 
+  2  WHERE NOT (( ODATE = '03-OCT-1990' AND CNUM>2003));
+
+      ONUM        AMT ODATE           CNUM       SNUM
+---------- ---------- --------- ---------- ----------
+      3003     767.19 03-OCT-90       2001       1001
+      3005    5060.45 03-OCT-90       2003       1002
+      3009    1713.23 04-OCT-90       2002       1003
+      3007      75.75 04-OCT-90       2004       1002
+      3008       4723 05-OCT-90       2006       1001
+      3010    1309.95 06-OCT-90       2004       1002
+      3011    9891.88 06-OCT-90       2006       1001
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT * FROM SALESPEOPLE
+  2  WHERE (COMM > .12 OR COMM < .14);
+
+      SNUM SNAME      CITY             COMM
+---------- ---------- ---------- ----------
+      1001 Peel       London            .12
+      1002 Serres     San Jose          .13
+      1007 Ritkin     Barcelona         .15
+      1003 Axelrod    New York           .1
+      1004 Motika     London            .11
+-------------------ALTERNATE WAY-----------------------
+SQL> SELECT * FROM SALESPEOPLE;
+
+      SNUM SNAME      CITY             COMM
+---------- ---------- ---------- ----------
+      1001 Peel       London            .12
+      1002 Serres     San Jose          .13
+      1007 Ritkin     Barcelona         .15
+      1003 Axelrod    New York           .1
+      1004 Motika     London            .11
+
+-------------------------------------------------------------------------------------------------------
+								Assignment –6
+						Using Special Operators in Conditions.
+			--------------------------------------------------------------------
+
+SQL> SELECT * FROM ORDERS 
+  2  WHERE (ODATE='03-OCT-1990' OR ODATE='04-OCT-1990');
+
+      ONUM        AMT ODATE           CNUM       SNUM
+---------- ---------- --------- ---------- ----------
+      3001      18.69 03-OCT-90       2008       1007
+      3003     767.19 03-OCT-90       2001       1001
+      3005    5060.45 03-OCT-90       2003       1002
+      3006    1098.16 03-OCT-90       2008       1007
+      3009    1713.23 04-OCT-90       2002       1003
+      3007      75.75 04-OCT-90       2004       1002
+      3002     1900.1 03-OCT-90       2007       1004
+
+SQL> SELECT * FROM ORDERS 
+  2  WHERE ODATE BETWEEN '03-OCT-1990' AND '04-OCT-1990';
+
+      ONUM        AMT ODATE           CNUM       SNUM
+---------- ---------- --------- ---------- ----------
+      3001      18.69 03-OCT-90       2008       1007
+      3003     767.19 03-OCT-90       2001       1001
+      3005    5060.45 03-OCT-90       2003       1002
+      3006    1098.16 03-OCT-90       2008       1007
+      3009    1713.23 04-OCT-90       2002       1003
+      3007      75.75 04-OCT-90       2004       1002
+      3002     1900.1 03-OCT-90       2007       1004
+
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT * FROM CUSTOMERS
+  2  WHERE SNUM=1001 OR SNUM=1004;
+
+      CNUM CNAME      CITY           RATING       SNUM
+---------- ---------- ---------- ---------- ----------
+      2001 Hoffman    London            100       1001
+      2006 Clemens    London            100       1001
+      2007 Pereira    Rome              100       1004
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT * FROM CUSTOMERS
+  2  WHERE CNAME>='A' AND CNAME < 'H' ;
+
+      CNUM CNAME      CITY           RATING       SNUM
+---------- ---------- ---------- ---------- ----------
+      2002 Giovanni   Rome              200       1003
+      2004 Grass      Berlin            300       1002
+      2006 Clemens    London            100       1001
+      2008 Cisneros   San Jose          300       1007
+
+-------------------------------------------------------------------------------------------------------
+SQL> SELECT * FROM CUSTOMERS 
+  2  WHERE CNAME LIKE 'C%';
+
+      CNUM CNAME      CITY           RATING       SNUM
+---------- ---------- ---------- ---------- ----------
+      2006 Clemens    London            100       1001
+      2008 Cisneros   San Jose          300       1007
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT * FROM ORDERS
+  2  WHERE AMT>0 AND AMT IS NOT NULL;
+
+      ONUM        AMT ODATE           CNUM       SNUM
+---------- ---------- --------- ---------- ----------
+      3001      18.69 03-OCT-90       2008       1007
+      3003     767.19 03-OCT-90       2001       1001
+      3005    5060.45 03-OCT-90       2003       1002
+      3006    1098.16 03-OCT-90       2008       1007
+      3009    1713.23 04-OCT-90       2002       1003
+      3007      75.75 04-OCT-90       2004       1002
+      3008       4723 05-OCT-90       2006       1001
+      3010    1309.95 06-OCT-90       2004       1002
+      3011    9891.88 06-OCT-90       2006       1001
+      3002     1900.1 03-OCT-90       2007       1004
+
+-------------------------------------------------------------------------------------------------------
+
+							Assignment –7
+				Summarizing Data with Aggregate Functions.
+		--------------------------------------------------------------------
+
+SQL> select * from orders 
+  2  where ODATE='03-OCT-1990';
+
+      ONUM        AMT ODATE           CNUM       SNUM
+---------- ---------- --------- ---------- ----------
+      3001      18.69 03-OCT-90       2008       1007
+      3003     767.19 03-OCT-90       2001       1001
+      3005    5060.45 03-OCT-90       2003       1002
+      3006    1098.16 03-OCT-90       2008       1007
+      3002     1900.1 03-OCT-90       2007       1004
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT COUNT(CITY) FROM CUSTOMERS 
+  2  WHERE CITY IS NOT NULL;
+
+COUNT(CITY)
+-----------
+          7
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT MIN(AMT) , CNUM FROM ORDERS
+  2  GROUP BY CNUM
+  3  ORDER BY CNUM;
+
+  MIN(AMT)       CNUM
+---------- ----------
+    767.19       2001
+   1713.23       2002
+   5060.45       2003
+     75.75       2004
+      4723       2006
+    1900.1       2007
+     18.69       2008
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT * FROM CUSTOMERS
+  2  WHERE CNAME LIKE 'G%';
+
+      CNUM CNAME      CITY           RATING       SNUM
+---------- ---------- ---------- ---------- ----------
+      2002 Giovanni   Rome              200       1003
+      2004 Grass      Berlin            300       1002
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT CITY FROM CUSTOMERS, MAX(RATING)
+  2  GROUP BY CITY
+  3  ORDER BY CITY;
+
+CITY      MAX(RATING) 
+-------  -------------- 
+Berlin       	300 
+London       	100 
+Rome         	200 
+San Jose     	300 
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT DISTINCT COUNT(SNUM) , ODATE FROM ORDERS
+  2  GROUP BY ODATE;
+
+COUNT(SNUM) ODATE
+----------- ---------
+          2 04-OCT-90
+          1 05-OCT-90
+          5 03-OCT-90
+          2 06-OCT-90
+-------------------------------------------------------------------------------------------------------
+							Assignment –8
+						Formatting Query output.
+			--------------------------------------------------------------------
+
+SQL> SELECT ONUM, SNUM, AMT, (AMT*.12) COMMISION FROM ORDERS;
+
+      ONUM       SNUM        AMT  COMMISION
+---------- ---------- ---------- ----------
+      3001       1007      18.69     2.2428
+      3003       1001     767.19    92.0628
+      3005       1002    5060.45    607.254
+      3006       1007    1098.16   131.7792
+      3009       1003    1713.23   205.5876
+      3007       1002      75.75       9.09
+      3008       1001       4723     566.76
+      3010       1002    1309.95    157.194
+      3011       1001    9891.88  1187.0256
+      3002       1004     1900.1    228.012
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT CITY, MAX(RATING)RATING FROM CUSTOMERS
+  2  GROUP BY CITY
+  3  ORDER BY CITY;
+
+CITY           RATING
+---------- ----------
+Berlin            300
+London            100
+Rome              200
+San Jose          300
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT RATING, CNAME, CNUM FROM CUSTOMERS
+  2  ORDER BY RATING DESC;
+
+    RATING CNAME            CNUM
+---------- ---------- ----------
+       300 Grass            2004
+       300 Cisneros         2008
+       200 Liu              2003
+       200 Giovanni         2002
+       100 Pereira          2007
+       100 Clemens          2006
+       100 Hoffman          2001
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT COUNT(ODATE) , ODATE FROM ORDERS
+  2  GROUP BY ODATE
+  3  ORDER BY COUNT(ODATE) DESC;
+
+COUNT(ODATE) ODATE
+------------ ---------
+           5 03-OCT-90
+           2 04-OCT-90
+           2 06-OCT-90
+           1 05-OCT-90
+
+-------------------------------------------------------------------------------------------------------
+							
+							Assignment – 9
+					Querying Multiple Tables at Once.
+
+			--------------------------------------------------------------------
+
+SQL> SELECT ORDERS.ONUM, CUSTOMERS.CNAME FROM ORDERS, CUSTOMERS
+  2  WHERE ORDERS.CNUM = CUSTOMERS.CNUM
+  3  ORDER BY ORDERS.ONUM;
+
+      ONUM CNAME
+---------- ----------
+      3001 Cisneros
+      3002 Pereira
+      3003 Hoffman
+      3005 Liu
+      3006 Cisneros
+      3007 Grass
+      3008 Clemens
+      3009 Giovanni
+      3010 Grass
+      3011 Clemens
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT ONUM, SALESPEOPLE.SNAME , CUSTOMERS.CNAME  FROM ORDERS, SALESPEOPLE, CUSTOMERS
+  2  WHERE ORDERS.SNUM = SALESPEOPLE.SNUM AND ORDERS.SNUM = CUSTOMERS.SNUM 
+  3  ORDER BY ONUM;
+
+      ONUM SNAME      CNAME
+---------- ---------- ----------
+      3001 Ritkin     Cisneros
+      3002 Motika     Pereira
+      3003 Peel       Hoffman
+      3003 Peel       Clemens
+      3005 Serres     Liu
+      3005 Serres     Grass
+      3006 Ritkin     Cisneros
+      3007 Serres     Grass
+      3007 Serres     Liu
+      3008 Peel       Hoffman
+      3008 Peel       Clemens
+
+      ONUM SNAME      CNAME
+---------- ---------- ----------
+      3009 Axelrod    Giovanni
+      3010 Serres     Liu
+      3010 Serres     Grass
+      3011 Peel       Hoffman
+      3011 Peel       Clemens
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT CUSTOMERS.CNAME, SALESPEOPLE.SNAME, SALESPEOPLE.COMM FROM CUSTOMERS, SALESPEOPLE
+  2  WHERE SALESPEOPLE.COMM>.12;
+
+CNAME      SNAME            COMM
+---------- ---------- ----------
+Hoffman    Serres            .13
+Giovanni   Serres            .13
+Liu        Serres            .13
+Grass      Serres            .13
+Clemens    Serres            .13
+Cisneros   Serres            .13
+Pereira    Serres            .13
+Hoffman    Ritkin            .15
+Giovanni   Ritkin            .15
+Liu        Ritkin            .15
+Grass      Ritkin            .15
+Clemens    Ritkin            .15
+Cisneros   Ritkin            .15
+Pereira    Ritkin            .15
+
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT SALESPEOPLE.SNUM, (ORDERS.AMT*SALESPEOPLE.COMM) COMMISION, CUSTOMERS.RATING FROM SALESPEOPLE, ORDERS, CUSTOMERS
+  2  WHERE RATING>100 AND SALESPEOPLE.SNUM = ORDERS.SNUM AND SALESPEOPLE.SNUM = CUSTOMERS.SNUM
+  3  ORDER BY SNUM;
+
+      SNUM 				COMMISION     RATING
+---------- ----------------------------- ----------
+      1002                      170.2935        200
+      1002                      657.8585        200
+      1002                      657.8585        300
+      1002                        9.8475        300
+      1002                      170.2935        300
+      1002                        9.8475        200
+      1003                       171.323        200
+      1007                        2.8035        300
+      1007                       164.724        300
+
+-------------------------------------------------------------------------------------------------------
+							Assignment –10
+						Joining a Table to itself.
+			--------------------------------------------------------------------
+SQL> SELECT M.SNAME, N.SNAME, M.CITY FROM SALESPEOPLE M, SALESPEOPLE N
+  2  WHERE M.CITY = N.CITY AND M.SNAME>N.SNAME;
+
+SNAME      SNAME      CITY
+---------- ---------- ----------
+Peel       Motika     London
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT CNAME, CITY FROM CUSTOMERS
+  2  WHERE RATING = ( SELECT RATING FROM CUSTOMERS WHERE CNAME='Hoffman');
+
+CNAME      CITY
+---------- ----------
+Hoffman    London
+Clemens    London
+Pereira    Rome
+
+-------------------------------------------------------------------------------------------------------
+							Assignment –11
+							  Subqueries
+			--------------------------------------------------------------------
+
+SQL> SELECT * FROM ORDERS   
+  2  WHERE CNUM = ( SELECT CNUM FROM CUSTOMERS WHERE CNAME='Cisneros');
+
+      ONUM        AMT ODATE           CNUM       SNUM
+---------- ---------- --------- ---------- ----------
+      3001      18.69 03-OCT-90       2008       1007
+      3006    1098.16 03-OCT-90       2008       1007
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT CNAME , RATING, AMT FROM CUSTOMERS, ORDERS
+  2   WHERE AMT > (SELECT AVG(AMT) FROM ORDERS) AND ORDERS.CNUM = CUSTOMERS.CNUM
+  3  ORDER BY ORDERS.CNUM;
+
+CNAME          RATING        AMT
+---------- ---------- ----------
+Liu               200    5060.45
+Clemens           100       4723
+Clemens           100    9891.88
+
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT SUM(AMT) FROM ORDERS 
+	GROUP BY SNUM 
+	HAVING SUM(AMT) >
+	(SELECT MAX(AMT) FROM ORDERS);
+
+	SELECT SUM(AMT) FROM ORDERS 
+		HAVING SUM(AMT) >
+		(SELECT MAX(AMT) FROM ORDERS);
+
+  SUM(AMT)
+----------
+  15382.07
+
+-------------------------------------------------------------------------------------------------------
+					ASSIGNMENT-12
+		--------------------------------------------------------------------
+	
+SQL> SELECT * FROM customers
+	WHERE rating >=ANY
+    (SELECT rating FROM customers
+     WHERE snum IN ( SELECT snum FROM salespeople 
+	WHERE sname='Serres'));
+
+      CNUM CNAME      CITY           RATING       SNUM
+---------- ---------- ---------- ---------- ----------
+      2004 Grass      Berlin            300       1002
+      2008 Cisneros   San Jose          300       1007
+      2003 Liu        San Jose          200       1002
+      2002 Giovanni   Rome              200       1003
+
+-------------------------------------------------------------------------------------------------------
+SQL> SELECT SNUM , SNAME, CITY FROM SALESPEOPLE
+WHERE (SNUM,CITY) != ALL(SELECT SNUM,CITY FROM customers);
+
+      SNUM SNAME      CITY
+---------- ---------- ----------
+      1003 Axelrod    New York
+      1004 Motika     London
+      1007 Ritkin     Barcelona
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT * FROM ORDERS WHERE AMT > ANY
+	(SELECT AMT FROM ORDERS ,CUSTOMERS
+	 WHERE ORDERS.CNUM=CUSTOMERS.CNUM AND CUSTOMERS.CITY='LONDON');
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT * FROM ORDERS WHERE AMT > 
+	(SELECT MAX(AMT) FROM ORDERS ,CUSTOMERS
+	 WHERE ORDERS.CNUM=CUSTOMERS.CNUM AND CUSTOMERS.CITY='LONDON');
+-------------------------------------------------------------------------------------------------------
+
+SQL> SELECT * FROM ORDERS WHERE AMT > 
+	(SELECT MIN(AMT) FROM ORDERS ,CUSTOMERS
+	 WHERE ORDERS.CNUM=CUSTOMERS.CNUM AND CUSTOMERS.CITY='LONDON');
+
+-------------------------------------------------------------------------------------------------------
